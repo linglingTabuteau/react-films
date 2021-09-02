@@ -1,32 +1,32 @@
-import {useState} from 'react'
+import React from "react"
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectPagination,
+  setCurrentPage,
+  setItemsPerPage,
+} from "../features/movies/moviesSlice";
 
-function Pagination({items, onPaginationChanged}) {
-  const [currentPage, setCurrentPage] = useState(0)
-  const [numberOfItemsPerPage, setNumberOfItemsPerPage] = useState(4)
+function Pagination({moviesList}) {
+  const dispatch = useDispatch();
+  const pagination = useSelector(selectPagination);
 
-  const numberOfItemsPerPageChoices = [4, 8, 12]
+  const numberOfItemsPerPageChoices = [4, 8, 12];
 
   const gotoNextPage = () => {
-    const newCurrentPage = currentPage + 1
-    setCurrentPage(newCurrentPage)
-    onPaginationChanged({page: newCurrentPage, numberOfItems: numberOfItemsPerPage})
-  }
+    dispatch(setCurrentPage(pagination.currentPage + 1));
+  };
 
   const gotoPreviousPage = () => {
-    const newCurrentPage = currentPage - 1
-    setCurrentPage(newCurrentPage)
-    onPaginationChanged({page: newCurrentPage, numberOfItems: numberOfItemsPerPage})
-  }
+    dispatch(setCurrentPage(pagination.currentPage - 1));
+  };
 
   const changeNumberOfItemsPerPage = (event) => {
-    const newNumberOfItemsPerPage = parseInt(event.target.value)
-    setNumberOfItemsPerPage(newNumberOfItemsPerPage)
-    setCurrentPage(0)
-    onPaginationChanged({page: 0, numberOfItems: newNumberOfItemsPerPage})
-  }
+    dispatch(setItemsPerPage(parseInt(event.target.value)));
+  };
 
-  const isPreviousButtonDisabled = currentPage === 0;
-  const isNextButtonDisabled = (currentPage + 1) * numberOfItemsPerPage > items.length
+  const isPreviousButtonDisabled = pagination.currentPage === 0;
+  const isNextButtonDisabled =
+    (pagination.currentPage + 1) * pagination.itemsPerPage > moviesList.length;
 
   return (
     <div>
@@ -37,11 +37,14 @@ function Pagination({items, onPaginationChanged}) {
         Suivant
       </button>
       <select onChange={changeNumberOfItemsPerPage}>
-        {numberOfItemsPerPageChoices.map(choice =>
-          <option value={choice} key={choice}>{choice}</option>)}
+        {numberOfItemsPerPageChoices.map((choice) => (
+          <option value={choice} key={choice}>
+            {choice}
+          </option>
+        ))}
       </select>
     </div>
-  )
+  );
 }
 
 export default Pagination;

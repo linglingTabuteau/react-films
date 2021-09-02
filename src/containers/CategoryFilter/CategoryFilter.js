@@ -1,17 +1,30 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./CategoryFilter.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectMovies,
+  selectCategoryFilter,
+  setCategoryFilter
+} from "../../features/movies/moviesSlice";
 
-const CategoryFilter = (props) => {
+const CategoryFilter = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const movies = useSelector(selectMovies);
+  const selectCategory = useSelector(selectCategoryFilter);
 
   const handleDropDown = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleChangeCategory = (category) => {
+    dispatch(setCategoryFilter(category));
+  }
+
   let listCategory;
   let allCategories = [];
-  const { moviesList } = props;
-  for (const movie of moviesList) {
+  for (const movie of movies) {
     if (!allCategories.includes(movie.category))
       allCategories.push(movie.category);
   }
@@ -19,11 +32,11 @@ const CategoryFilter = (props) => {
   if (isOpen) {
     listCategory = (
       <ul className="CategoryList">
-        {allCategories.map((category, index) => {
+        {allCategories.map((category) => {
           return (
             <li
               key={category}
-              onClick={() => props.onChangeCategory(category)}
+              onClick={() => handleChangeCategory(category)}
               className="OneCategory"
             >
               {category}
@@ -35,14 +48,14 @@ const CategoryFilter = (props) => {
   }
 
   let label = "choisir categorie film";
-  if (props.selectCategory && allCategories.includes(props.selectCategory)) {
-    label = props.selectCategory;
+  if (selectCategory && allCategories.includes(selectCategory)) {
+    label = selectCategory;
   }
 
   return (
-    <div className="CategoryFilter" onClick={() => handleDropDown()}>
+    <div className="CategoryFilter" onClick={handleDropDown}>
       {label}
-      <i class="fas fa-chevron-circle-down"></i>
+      <i className="fas fa-chevron-circle-down"></i>
       {listCategory}
     </div>
   );

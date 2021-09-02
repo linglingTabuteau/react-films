@@ -1,4 +1,6 @@
-import React from "react";
+import React from "react"
+import { useDispatch } from 'react-redux';
+import { deleteMovie, changeMovieVote } from '../../features/movies/moviesSlice';
 import {
   Card,
   CardImg,
@@ -11,19 +13,20 @@ import {
 import ToggleButton from "../ToggleButton";
 import "./Movie.css";
 
-const CardMovie = ({ infoMovie, deleteMovie, handleOnChangeVoteCount }) => {
+const CardMovie = ({ infoMovie }) => {
   const { id, title, category, likes, dislikes } = infoMovie;
+  const dispatch = useDispatch();
 
-  const handleLikeToggle = (likeCount) => {
-    let vote = { like: likeCount, dislike: dislikes };
-    handleOnChangeVoteCount(id, vote);
-    console.log(vote);
+  const handleLikeToggle = (likesCount) => {
+    dispatch(changeMovieVote({movieId: id, likes: likesCount, dislikes: dislikes}));
   };
-  const handleDislikeToggle = (dislikeCount) => {
-    let vote = { like: likes, dislike: dislikeCount };
-    handleOnChangeVoteCount(id, vote);
-    console.log(vote);
+  const handleDislikeToggle = (dislikesCount) => {
+    dispatch(changeMovieVote({movieId: id, likes: likes, dislikes: dislikesCount}));
   };
+
+  const handleDeleteMovie = () => {
+    dispatch(deleteMovie(id));
+  }
 
   return (
     <div>
@@ -58,7 +61,7 @@ const CardMovie = ({ infoMovie, deleteMovie, handleOnChangeVoteCount }) => {
             value={likes}
           ></meter>
 
-          <Button color="danger" onClick={() => deleteMovie(id)}>
+          <Button color="danger" onClick={handleDeleteMovie}>
             Supprimer
           </Button>
         </CardBody>
