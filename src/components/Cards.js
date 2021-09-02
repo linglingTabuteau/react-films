@@ -3,6 +3,7 @@ import CardFilm from "./Card";
 import { Container, Row, Col } from "reactstrap";
 
 const Cards = (props) => {
+  
   return (
     <Container class="Cards">
       <Row>

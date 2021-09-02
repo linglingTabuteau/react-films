@@ -1,0 +1,33 @@
+.CategoryFilter {
+    border: 2px black solid;
+    width : 180px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .CategoryList {
+    list-style: none;
+    text-align: center;
+    padding   : 0px;
+  
+  }
+  
+  .Items {
+    padding: 5px;
+  }
+  
+  .Items.item-hover:hover {
+    color      : rgb(34, 160, 65);
+    font-weight: bold;
+  }
+  
+  .active {
+    color      : rgb(34, 160, 65);
+    font-weight: bold;
+  }
+  
+  img {
+    width         : 20px;
+    padding-left  : 10px;
+    vertical-align: text-bottom;
+  }

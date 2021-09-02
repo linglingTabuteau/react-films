@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 
 const CardFilm = (props) => {
-  const { title, category, id } = props.infoMovie;
+  const { id, title, category, likes, dislikes } = props.infoMovie;
   return (
     <div>
       <Card class="Card">
@@ -25,13 +25,22 @@ const CardFilm = (props) => {
           <CardSubtitle tag="h6" className="mb-2 text-muted">
             {category}
           </CardSubtitle>
-          {/* <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText> */}
           <i class="far fa-thumbs-up"></i>
           <i class="far fa-thumbs-down"></i>
-          <Button onClick={() => props.deleteMovie(id)}>Supprimer</Button>
+          {/* <label for="fuel">Fuel level:</label> */}
+          <meter
+            id="fuel"
+            min="0"
+            max={likes + dislikes}
+            low="3"
+            high="8"
+            value={likes}
+          >
+          </meter>
+          <Button color="danger" onClick={() => props.deleteMovie(id)}>Supprimer</Button>
+          {/* <Button color="danger" onClick={() => alert("être vous sur de supprimer ce movie")}>Supprimer</Button> */}
         </CardBody>
       </Card>
-      {/* <h1>Hello react</h1> */}
     </div>
   );
 };
