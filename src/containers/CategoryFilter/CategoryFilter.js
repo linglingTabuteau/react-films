@@ -20,14 +20,15 @@ const CategoryFilter = (props) => {
     listCategory = (
       <ul className="CategoryList">
         {allCategories.map((category, index) => {
-            return (
-              <li
-                key={category}
-                onClick={() => props.onChangeCategory(category)}
-              >
-                {category}
-              </li>
-            );
+          return (
+            <li
+              key={category}
+              onClick={() => props.onChangeCategory(category)}
+              className="OneCategory"
+            >
+              {category}
+            </li>
+          );
         })}
       </ul>
     );

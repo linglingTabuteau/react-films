@@ -1,6 +1,6 @@
 .CategoryFilter {
     border: 2px black solid;
-    border-radius: 30px;
+    border-radius: 15px;
     width : 200px;
     margin: 10px;
     cursor: pointer;
@@ -13,21 +13,16 @@
   
   }
   
-  .Items {
+  .OneCategory {
     padding: 5px;
   }
   
-  .Items.item-hover:hover {
-    color      : rgb(34, 160, 65);
+  li:hover {
+    color      : rgb(46, 46, 197);
     font-weight: bold;
   }
   
-  .active {
-    color      : rgb(34, 160, 65);
-    font-weight: bold;
-  }
-  
-  img {
+  i {
     width         : 20px;
     padding-left  : 10px;
     vertical-align: text-bottom;

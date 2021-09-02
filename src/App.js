@@ -1,11 +1,10 @@
 // import logo from "./logo.svg";
 import React, { Component } from "react";
-import Cards from "./components/Cards";
 import NavBar from "./components/NavBar";
+import Cards from "./components/Cards/Cards";
 import CategoryFilter from "./containers/CategoryFilter/CategoryFilter";
 import { movies$ } from "./movies";
 import "./App.css";
-import { render } from "@testing-library/react";
 
 class App extends Component {
   constructor(props) {

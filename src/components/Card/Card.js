@@ -8,6 +8,7 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
+import ToggleButton from "../ToggleButton/ToggleButton";
 import "./Card.css";
 
 const CardFilm = (props) => {
@@ -26,9 +27,10 @@ const CardFilm = (props) => {
           <CardSubtitle tag="h6" className="mb-2 text-muted">
             {category}
           </CardSubtitle>
-          <i class="far fa-thumbs-up"></i>
-          <i class="far fa-thumbs-down"></i>
+          {/* <i class="far fa-thumbs-up"></i>
+          <i class="far fa-thumbs-down"></i> */}
           {/* <label for="fuel">Fuel level:</label> */}
+          <ToggleButton />
           <meter
             id="fuel"
             min="0"
@@ -40,7 +42,6 @@ const CardFilm = (props) => {
           <Button color="danger" onClick={() => props.deleteMovie(id)}>
             Supprimer
           </Button>
-          {/* <Button color="danger" onClick={() => alert("être vous sur de supprimer ce movie")}>Supprimer</Button> */}
         </CardBody>
       </Card>
     </div>
