@@ -1,6 +1,7 @@
 .CategoryFilter {
     border: 2px black solid;
-    width : 180px;
+    border-radius: 30px;
+    width : 200px;
     margin: 10px;
     cursor: pointer;
   }

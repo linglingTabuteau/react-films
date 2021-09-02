@@ -16,9 +16,9 @@ const NavBar = (props) => {
 
   return (
     <div>
-      <Navbar color="faded" light>
+      <Navbar color="dark" >
         <NavbarBrand href="/" className="mr-auto">
-          React Interview Particeep
+        Particeep React Interview
         </NavbarBrand>
         <Nav navbar>
           <NavItem>

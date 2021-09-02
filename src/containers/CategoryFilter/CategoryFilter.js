@@ -10,29 +10,31 @@ const CategoryFilter = (props) => {
 
   let listCategory;
   let allCategories = [];
+  const { moviesList } = props;
+  for (const movie of moviesList) {
+    if (!allCategories.includes(movie.category))
+      allCategories.push(movie.category);
+  }
 
   if (isOpen) {
     listCategory = (
       <ul className="CategoryList">
-        {props.moviesList.map((movie, index) => {
-          if (!allCategories.includes(movie.category)) {
-            allCategories.push(movie.category);
+        {allCategories.map((category, index) => {
             return (
               <li
-                key={movie.title}
-                onClick={() => props.onChangeCategory(movie.category)}
+                key={category}
+                onClick={() => props.onChangeCategory(category)}
               >
-                {movie.category}
+                {category}
               </li>
             );
-          }
         })}
       </ul>
     );
   }
 
-  let label = "Choisir Category Movie";
-  if (props.selectCategory) {
+  let label = "choisir categorie film";
+  if (props.selectCategory && allCategories.includes(props.selectCategory)) {
     label = props.selectCategory;
   }
 
