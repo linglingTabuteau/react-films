@@ -1,5 +1,5 @@
 import React from "react";
-import CardFilm from "./Card";
+import CardFilm from "./Card/Card";
 import { Container, Row, Col } from "reactstrap";
 
 const Cards = (props) => {

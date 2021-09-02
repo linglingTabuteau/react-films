@@ -8,12 +8,13 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
+import "./Card.css";
 
 const CardFilm = (props) => {
   const { id, title, category, likes, dislikes } = props.infoMovie;
   return (
     <div>
-      <Card class="Card">
+      <Card className="Card">
         <CardImg
           top
           width="100%"
@@ -35,9 +36,10 @@ const CardFilm = (props) => {
             low="3"
             high="8"
             value={likes}
-          >
-          </meter>
-          <Button color="danger" onClick={() => props.deleteMovie(id)}>Supprimer</Button>
+          ></meter>
+          <Button color="danger" onClick={() => props.deleteMovie(id)}>
+            Supprimer
+          </Button>
           {/* <Button color="danger" onClick={() => alert("être vous sur de supprimer ce movie")}>Supprimer</Button> */}
         </CardBody>
       </Card>

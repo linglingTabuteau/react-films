@@ -22,7 +22,7 @@ const NavBar = (props) => {
         </NavbarBrand>
         <Nav navbar>
           <NavItem>
-            <NavLink href="/components/">TOUS LES FILMS</NavLink>
+            <NavLink href="/films/">TOUS LES FILMS</NavLink>
           </NavItem>
         </Nav>
       </Navbar>
