@@ -11,7 +11,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // movies: [],
       filteredMovies: [],
       selectCategory: "",
     };
@@ -24,9 +23,7 @@ class App extends Component {
       let response = await movies$;
       let moviesList = [...response];
       this.setState({
-        // movies: moviesList,
         filteredMovies: moviesList,
-        selectCategory: "",
       });
     } catch (e) {
       console.log(e);
@@ -35,12 +32,12 @@ class App extends Component {
 
   handleDeleteCard = (deleteMovieId) => {
     console.log(this.state.movies);
-    let moviesList = [...this.state.movies];
+    let moviesList = [...this.state.filteredMovies];
     let newMoviesList = moviesList.filter(
       (movie) => movie.id !== deleteMovieId
     );
     this.setState({
-      movies: newMoviesList,
+      filteredMovies: newMoviesList,
     });
   };
 
@@ -53,7 +50,6 @@ class App extends Component {
   render() {
     let filteredMovies =[...this.state.filteredMovies];
     if (this.state.selectCategory) {
-      // let moviesList = s
       filteredMovies = filteredMovies.filter(
         (movie) => movie.category == this.state.selectCategory
       );
