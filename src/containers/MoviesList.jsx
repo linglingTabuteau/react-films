@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import NavBar from "../components/NavBar";
 import Movies from "../components/Movies";
 import CategoryFilter from "./CategoryFilter/CategoryFilter";
+import Pagination from "./Pagination";
 import { movies$ } from "../api/movies";
 
 class MoviesList extends Component {
@@ -11,10 +12,12 @@ class MoviesList extends Component {
     this.state = {
       filteredMovies: [],
       selectCategory: "",
+      pagination: { page: 0, numberOfItems: 4 },
     };
     this.handleDeleteCard = this.handleDeleteCard.bind(this);
     this.handleSelectCategory = this.handleSelectCategory.bind(this);
     this.handleOnChangeVoteCount = this.handleOnChangeVoteCount.bind(this);
+    this.handleChangePagination = this.handleChangePagination.bind(this);
   }
 
   componentDidMount = async () => {
@@ -55,6 +58,10 @@ class MoviesList extends Component {
     });
   };
 
+  handleChangePagination = (pagination) => {
+    this.setState({ pagination: pagination });
+  };
+
   render() {
     let filteredMovies = [...this.state.filteredMovies];
     if (this.state.selectCategory) {
@@ -62,6 +69,12 @@ class MoviesList extends Component {
         (movie) => movie.category == this.state.selectCategory
       );
     }
+    const paginationStartIndex =
+      this.state.pagination.page * this.state.pagination.numberOfItems;
+    const paginatedMovies = filteredMovies.slice(
+      paginationStartIndex,
+      paginationStartIndex + this.state.pagination.numberOfItems
+    );
     return (
       <div className="App">
         <NavBar />
@@ -71,9 +84,13 @@ class MoviesList extends Component {
           selectCategory={this.state.selectCategory}
         />
         <Movies
-          moviesList={filteredMovies}
+          moviesList={paginatedMovies}
           deleteMovie={this.handleDeleteCard}
           handleOnChangeVoteCount={this.handleOnChangeVoteCount}
+        />
+        <Pagination
+          items={filteredMovies}
+          onPaginationChanged={this.handleChangePagination}
         />
       </div>
     );

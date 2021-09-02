@@ -1,9 +1,9 @@
-.Card{
+.Movie{
     margin-bottom: 25px;  
  
 }
 
-.Card:hover {
+.Movie:hover {
     transform:scale(1.1);
     transition: 1s;
     }

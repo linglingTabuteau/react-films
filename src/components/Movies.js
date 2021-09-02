@@ -5,7 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 const Movies = ({ moviesList, deleteMovie, handleOnChangeVoteCount}) => {
   
   return (
-    <Container class="Cards">
+    <Container className="Movies">
       <Row>
         {moviesList.map((movie) => {
           return (

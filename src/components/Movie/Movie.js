@@ -27,7 +27,7 @@ const CardMovie = ({ infoMovie, deleteMovie, handleOnChangeVoteCount }) => {
 
   return (
     <div>
-      <Card className="Card">
+      <Card className="Movie">
         <CardImg
           top
           width="100%"
