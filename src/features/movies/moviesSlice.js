@@ -59,7 +59,7 @@ export const selectFilteredMovies = (state) => {
       (movie) => movie.category == state.categoryFilter
     );
   }
-  
+
   return filteredMovies;
 }
 export const selectPagination = (state) => state.movies.pagination;
