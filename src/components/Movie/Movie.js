@@ -1,6 +1,9 @@
-import React from "react"
-import { useDispatch } from 'react-redux';
-import { deleteMovie, changeMovieVote } from '../../features/movies/moviesSlice';
+import React from "react";
+import { useDispatch } from "react-redux";
+import {
+  deleteMovie,
+  changeMovieVote,
+} from "../../features/movies/moviesSlice";
 import {
   Card,
   CardImg,
@@ -14,29 +17,34 @@ import ToggleButton from "../ToggleButton";
 import "./Movie.css";
 
 const CardMovie = ({ infoMovie }) => {
-  const { id, title, category, likes, dislikes } = infoMovie;
+  const { id, title, category, likes, dislikes, url } = infoMovie;
   const dispatch = useDispatch();
 
   const handleLikeToggle = (likesCount) => {
-    dispatch(changeMovieVote({movieId: id, likes: likesCount, dislikes: dislikes}));
+    dispatch(
+      changeMovieVote({ movieId: id, likes: likesCount, dislikes: dislikes })
+    );
   };
   const handleDislikeToggle = (dislikesCount) => {
-    dispatch(changeMovieVote({movieId: id, likes: likes, dislikes: dislikesCount}));
+    dispatch(
+      changeMovieVote({ movieId: id, likes: likes, dislikes: dislikesCount })
+    );
   };
 
   const handleDeleteMovie = () => {
     dispatch(deleteMovie(id));
-  }
+  };
 
   return (
     <div>
       <Card className="Movie">
-        <CardImg
-          top
-          width="100%"
-          src="/assets/spirited_away1.png"
-          alt="Card image cap"
-        />
+          <CardImg
+            top
+            width="100%"
+            // src="/assets/spirited_away1.png"
+            src={url}
+            alt="Card image cap"
+          />
         <CardBody>
           <CardTitle tag="h5">{title}</CardTitle>
           <CardSubtitle tag="h6" className="mb-2 text-muted">
